@@ -1,8 +1,15 @@
 # MonitorSync
 
+[![CI](https://github.com/starraiser24-source/MonitorSync/actions/workflows/ci.yml/badge.svg)](https://github.com/starraiser24-source/MonitorSync/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](./LICENSE)
+
 PC-to-Phone screen mirroring and remote control desktop application supporting **HarmonyOS NEXT (HDC)** and **Android (ADB / scrcpy)**.
 
 一款基于 Electron + React + TypeScript 构建的跨生态手机投屏与远程控制桌面工具，同时支持 **HarmonyOS NEXT (HDC)** 与 **Android (ADB / scrcpy)**。
+
+<p align="center">
+  <img src="./docs/demo.gif" alt="MonitorSync Demo" width="840" />
+</p>
 
 ---
 
