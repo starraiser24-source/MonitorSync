@@ -1,44 +1,55 @@
+<div align="center">
+
 # MonitorSync
 
+**Low-latency PC-to-Phone screen mirroring and remote control for HarmonyOS NEXT (HDC) and Android (ADB / scrcpy).**
+
 [![CI](https://github.com/starraiser24-source/MonitorSync/actions/workflows/ci.yml/badge.svg)](https://github.com/starraiser24-source/MonitorSync/actions/workflows/ci.yml)
+[![Release](https://img.shields.io/github/v/release/starraiser24-source/MonitorSync?include_prereleases&label=Release)](https://github.com/starraiser24-source/MonitorSync/releases)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](./LICENSE)
 
-PC-to-Phone screen mirroring and remote control desktop application supporting **HarmonyOS NEXT (HDC)** and **Android (ADB / scrcpy)**.
+**English** | [简体中文](./README_CN.md)
 
-一款基于 Electron + React + TypeScript 构建的跨生态手机投屏与远程控制桌面工具，同时支持 **HarmonyOS NEXT (HDC)** 与 **Android (ADB / scrcpy)**。
+<br />
 
-<p align="center">
-  <img src="./docs/demo.gif" alt="MonitorSync Demo" width="840" />
-</p>
+<img src="./docs/demo.gif" alt="MonitorSync Demo" width="840" />
 
----
-
-## 功能特性
-
-- **双平台支持**
-  - **HarmonyOS NEXT**：通过 HDC 连接设备，配合原生 `harmony-agent`（C++ AVScreenCapture + 硬件 H.264 编码）实现高帧率低延迟投屏与远程控制。
-  - **Android**：基于 ADB 与 `scrcpy-server` 协议实现 H.264 视频流解码与触控、按键、文本输入控制。
-- **USB & Wi-Fi 无线连接**：支持有线直连与局域网无线调试连接。
-- **流畅渲染与交互**：渲染端使用 WebCodecs H.264 解码与 Canvas 绘制，支持鼠标点击、滑动、滚轮与常用系统快捷键。
-- **灵活配置**：支持在应用内自定义 `hdc`、`adb` 与 `scrcpy-server` 路径以及分辨率、码率、帧率等投屏参数。
+</div>
 
 ---
 
-## 环境要求
+## Features
 
-- **Node.js**：>= 20.x（推荐使用最新 LTS）
-- **Android 投屏**：
-  - [Android Platform Tools](https://developer.android.com/tools/releases/platform-tools)（`adb`）
-  - [scrcpy](https://github.com/Genymobile/scrcpy/releases) 服务端文件 `scrcpy-server`（推荐 **v3.1**）
-- **HarmonyOS NEXT 投屏**：
-  - [DevEco Studio](https://developer.huawei.com/consumer/cn/deveco-studio/) 及 OpenHarmony / HarmonyOS SDK（提供 `hdc` 工具链）
-  - 搭载 HarmonyOS NEXT（API 12+）的真机并开启开发者模式与 USB 调试
+- **Dual-Ecosystem Support**
+  - **HarmonyOS NEXT (HDC)**: Native C++ `harmony-agent` using `AVScreenCapture` + hardware H.264 encoding over HDC for smooth 60fps screen mirroring and remote touch/keyboard control — a *scrcpy-like* experience for HarmonyOS NEXT.
+  - **Android (ADB / scrcpy)**: Connects via ADB and the `scrcpy-server` protocol for hardware-accelerated H.264 streaming and full touch, key, scroll, and text input control.
+- **USB & Wi-Fi Wireless Connections**: Works seamlessly over USB cables or local Wi-Fi debugging.
+- **Hardware-Accelerated WebCodecs Rendering**: Decodes H.264 frames directly in the Electron renderer via WebCodecs + Canvas for ultra-low latency.
+- **Customizable Controls & Paths**: Configure `hdc`, `adb`, and `scrcpy-server` paths, plus resolution, bitrate, and FPS directly in Settings.
 
 ---
 
-## 快速开始
+## Download
 
-### 1. 克隆项目并安装依赖
+Prebuilt Windows installers (`.exe`) and portable archives (`.zip`) are published on the [GitHub Releases](https://github.com/starraiser24-source/MonitorSync/releases) page.
+
+---
+
+## Requirements
+
+- **Node.js**: >= 20.x (for building from source)
+- **For Android**:
+  - [Android Platform Tools](https://developer.android.com/tools/releases/platform-tools) (`adb`)
+  - `scrcpy-server` binary from [Genymobile/scrcpy Releases](https://github.com/Genymobile/scrcpy/releases) (v3.1 recommended)
+- **For HarmonyOS NEXT**:
+  - [DevEco Studio](https://developer.huawei.com/consumer/en/deveco-studio/) / OpenHarmony SDK (`hdc`)
+  - A HarmonyOS NEXT device (API 12+) with Developer Mode & USB Debugging enabled
+
+---
+
+## Quick Start (From Source)
+
+### 1. Clone and install dependencies
 
 ```bash
 git clone https://github.com/starraiser24-source/MonitorSync.git
@@ -46,64 +57,68 @@ cd MonitorSync
 npm install
 ```
 
-### 2. 准备外部二进制文件（按需）
+### 2. Prepare external binaries (as needed)
 
-仓库不包含第三方二进制文件，请按使用场景准备：
+External binaries are not tracked in Git:
 
-- **Android（scrcpy-server）**
-  1. 前往 [Genymobile/scrcpy Releases](https://github.com/Genymobile/scrcpy/releases) 下载对应版本（推荐 `v3.1`）的 `scrcpy-server`。
-  2. 将文件放置到 `resources/bin/scrcpy-server`（或在应用「设置」中指定自定义路径）。
-- **HarmonyOS NEXT（`harmony-agent`）**
-  1. 复制配置模板：
+- **Android (`scrcpy-server`)**
+  1. Download `scrcpy-server` (recommended: `v3.1`) from [Genymobile/scrcpy Releases](https://github.com/Genymobile/scrcpy/releases).
+  2. Place it at `resources/bin/scrcpy-server` (or specify its path in the in-app **Settings**).
+- **HarmonyOS NEXT (`harmony-agent`)**
+  1. Copy the config template:
      ```bash
      cp harmony-agent/build-profile.example.json5 harmony-agent/build-profile.json5
      ```
-  2. 使用 **DevEco Studio** 打开 `harmony-agent/` 目录。
-  3. 在 `File -> Project Structure -> Signing Configs` 中勾选 **Automatically generate signature** 完成本地调试签名。
-  4. 连接 HarmonyOS NEXT 设备，构建并安装 `harmony-agent` 到手机端。
+  2. Open `harmony-agent/` in **DevEco Studio**.
+  3. Go to `File -> Project Structure -> Signing Configs` and check **Automatically generate signature** to create a local debug signature (required by HarmonyOS NEXT app installation security).
+  4. Build and install `harmony-agent` onto your HarmonyOS NEXT device.
 
-> `hdc` 与 `adb` 只要已加入系统 `PATH`（或安装在默认 SDK 目录），应用即可自动识别；也可直接放到 `resources/bin/` 或在应用内「设置」中手动指定路径。
+> `hdc` and `adb` are automatically detected if they are on your system `PATH` or installed in default SDK locations. You can also place them in `resources/bin/` or configure custom paths in Settings.
 
-### 3. 启动开发与构建
+### 3. Run, test, and package
 
 ```bash
-# 启动开发模式
+# Start in development mode
 npm run dev
 
-# 类型检查
+# Typecheck
 npm run typecheck
 
-# 运行单元测试
+# Run unit tests
 npm test
 
-# 构建生产产物
+# Build production bundle
 npm run build
+
+# Package Windows installer (.exe) and portable (.zip) into dist/
+npm run dist:win
 ```
 
 ---
 
-## 项目结构
+## Project Structure
 
 ```text
 MonitorSync/
 ├── src/
-│   ├── main/           # Electron 主进程（HDC / ADB 驱动、WebSocket 流服务、配置存储）
-│   ├── preload/        # Electron Preload 桥接层
-│   ├── renderer/       # React + Tailwind CSS 前端界面与 H.264 / JPEG 渲染器
-│   └── shared/         # 跨进程共享类型定义
-├── harmony-agent/      # HarmonyOS NEXT 原生录屏推流端（ArkTS + C++ NDK）
-├── resources/bin/      # 本地外部二进制目录（被 .gitignore 忽略）
-└── tests/              # Vitest 单元测试
+│   ├── main/           # Electron main process (HDC/ADB drivers, WebSocket stream server, settings)
+│   ├── preload/        # Electron preload bridge
+│   ├── renderer/       # React + Tailwind CSS UI and WebCodecs H.264 / JPEG renderers
+│   └── shared/         # Shared IPC and protocol types
+├── harmony-agent/      # HarmonyOS NEXT native screen streamer (ArkTS + C++ NDK)
+├── resources/bin/      # Local external binaries directory (gitignored)
+├── docs/               # Documentation and demo assets
+└── tests/              # Vitest unit tests
 ```
 
 ---
 
-## 致谢
+## Acknowledgements
 
-- Android 投屏协议兼容并调用 [Genymobile/scrcpy](https://github.com/Genymobile/scrcpy)（Apache-2.0 License）的 `scrcpy-server`。
+- Android mirroring is compatible with and invokes `scrcpy-server` from [Genymobile/scrcpy](https://github.com/Genymobile/scrcpy) (Apache-2.0 License).
 
 ---
 
-## 开源协议
+## License
 
-本项目基于 [MIT License](./LICENSE) 开源。
+Licensed under the [MIT License](./LICENSE).

@@ -1,0 +1,49 @@
+appId: com.monitorsync.app
+productName: MonitorSync
+asar: true
+
+directories:
+  output: dist
+
+files:
+  - out/**/*
+  - package.json
+  - "!harmony-agent/**"
+  - "!docs/**"
+  - "!tests/**"
+  - "!src/**"
+
+extraResources:
+  - from: resources/bin
+    to: bin
+    filter:
+      - "**/*"
+      - "!.gitkeep"
+
+win:
+  target:
+    - target: nsis
+      arch:
+        - x64
+    - target: zip
+      arch:
+        - x64
+  artifactName: ${productName}-${version}-win-${arch}.${ext}
+
+nsis:
+  oneClick: false
+  allowToChangeInstallationDirectory: true
+  createDesktopShortcut: true
+  createStartMenuShortcut: true
+  artifactName: ${productName}-${version}-win-${arch}-setup.${ext}
+
+mac:
+  target:
+    - dmg
+    - zip
+  artifactName: ${productName}-${version}-mac-${arch}.${ext}
+
+linux:
+  target:
+    - AppImage
+  artifactName: ${productName}-${version}-linux-${arch}.${ext}
