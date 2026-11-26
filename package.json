@@ -1,0 +1,53 @@
+{
+  "name": "monitorsync",
+  "version": "0.1.0",
+  "description": "PC-to-Phone screen mirroring and remote control for HarmonyOS NEXT (HDC) and Android (ADB/scrcpy)",
+  "license": "MIT",
+  "author": "MonitorSync Contributors",
+  "keywords": [
+    "electron",
+    "harmonyos",
+    "hdc",
+    "android",
+    "adb",
+    "scrcpy",
+    "screen-mirroring",
+    "remote-control"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/starraiser24-source/MonitorSync.git"
+  },
+  "homepage": "https://github.com/starraiser24-source/MonitorSync#readme",
+  "bugs": {
+    "url": "https://github.com/starraiser24-source/MonitorSync/issues"
+  },
+  "main": "./out/main/index.js",
+  "scripts": {
+    "dev": "electron-vite dev",
+    "build": "electron-vite build",
+    "preview": "electron-vite preview",
+    "typecheck": "tsc --noEmit -p tsconfig.node.json && tsc --noEmit -p tsconfig.web.json",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "lucide-react": "^0.469.0",
+    "ws": "^8.18.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.0.0",
+    "@types/node": "^22.10.2",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "@types/ws": "^8.5.13",
+    "@vitejs/plugin-react": "^4.3.4",
+    "electron": "^35.0.0",
+    "electron-vite": "^3.0.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "tailwindcss": "^4.0.0",
+    "typescript": "^5.7.2",
+    "vite": "^6.0.7",
+    "vitest": "^3.0.0"
+  }
+}

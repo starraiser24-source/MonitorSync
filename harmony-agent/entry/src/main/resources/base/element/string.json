@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "MonitorSync 60fps H.264 Screen Streamer"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "MonitorSync Screen Mirroring Agent"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "MonitorSync"
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "name": "libstreamer.so",
+  "types": "./index.d.ts",
+  "version": "1.0.0",
+  "description": "Native OH_AVScreenCapture + OH_VideoEncoder H.264 TCP streamer"
+}

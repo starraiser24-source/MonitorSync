@@ -1,0 +1,11 @@
+{
+  "name": "entry",
+  "version": "1.0.0",
+  "description": "MonitorSync 60fps H.264 Streamer Entry Module",
+  "main": "",
+  "author": "",
+  "license": "",
+  "dependencies": {
+    "libstreamer.so": "file:./src/main/cpp/types/libstreamer"
+  }
+}

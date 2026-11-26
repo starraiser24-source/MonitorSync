@@ -1,0 +1,41 @@
+# Dependencies
+node_modules/
+oh_modules/
+
+# Build outputs
+out/
+dist/
+release/
+*.tsbuildinfo
+
+# Local environment & secrets
+.env
+.env.*
+!.env.example
+
+# HarmonyOS local signing & build artifacts
+harmony-agent/build-profile.json5
+harmony-agent/.hvigor/
+harmony-agent/.idea/
+harmony-agent/local.properties
+harmony-agent/entry/build/
+harmony-agent/entry/.cxx/
+*.hap
+*.app
+*.hsp
+*.har
+
+# External & compiled binaries (see README for setup instructions)
+resources/bin/*
+!resources/bin/.gitkeep
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# Editor & OS files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
